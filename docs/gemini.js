@@ -6,7 +6,7 @@ import { YUI_INSTRUCTIONS } from "./persona.js";
 export const GEMINI_INPUT_RATE = 16000;
 export const GEMINI_MODELS = ["gemini-3.1-flash-live-preview", "gemini-3.8-live"];
 export const GEMINI_DEFAULT_MODEL = "gemini-3.1-flash-live-preview";
-export const GEMINI_DEFAULT_VOICE = "Zephyr";
+export const GEMINI_DEFAULT_VOICE = "Leda";
 
 export function geminiUrl(apiKey) {
   return "wss://generativelanguage.googleapis.com/ws/google.ai.generativelanguage.v1beta.GenerativeService.BidiGenerateContent?key="

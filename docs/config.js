@@ -6,7 +6,7 @@ export const DEFAULT_MODEL = "eleven_realtime_v1_mini";
 
 export const DEFAULT_VOICE_ID = "94gBdmmazJ025HbvF78b";
 
-export const DEFAULT_TEMPERATURE = 0.7;
+export const DEFAULT_TEMPERATURE = 0.9;
 
 export const DEFAULT_EAGERNESS = "high";
 

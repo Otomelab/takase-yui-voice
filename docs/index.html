@@ -67,8 +67,8 @@
     <fieldset class="choice-group">
       <legend>接続先</legend>
       <div class="choices">
-        <label class="choice"><input type="radio" name="provider" value="elevenlabs" checked> ElevenLabs</label>
-        <label class="choice"><input type="radio" name="provider" value="gemini"> Gemini Live</label>
+        <label class="choice"><input type="radio" name="provider" value="elevenlabs"> ElevenLabs</label>
+        <label class="choice"><input type="radio" name="provider" value="gemini" checked> Gemini Live</label>
       </div>
     </fieldset>
     <div class="gemini-only">
@@ -79,13 +79,13 @@
     <label>
       Gemini モデル
       <select id="gemini-model">
-        <option value="gemini-3.1-flash-live-preview">gemini-3.1-flash-live-preview（無料枠あり）</option>
+        <option value="gemini-3.1-flash-live-preview" selected>gemini-3.1-flash-live-preview（無料枠あり）</option>
         <option value="gemini-3.8-live">gemini-3.8-live</option>
       </select>
     </label>
     <label>
-      Gemini の声（既定 Zephyr）
-      <select id="gemini-voice"><option value="Zephyr" selected>Zephyr（明るい）</option><option value="Leda">Leda（若々しい）</option><option value="Aoede">Aoede（軽やか）</option><option value="Kore">Kore（しっかり）</option></select>
+      Gemini の声（既定 Leda）
+      <select id="gemini-voice"><option value="Zephyr">Zephyr（明るい）</option><option value="Leda" selected>Leda（若々しい）</option><option value="Aoede">Aoede（軽やか）</option><option value="Kore">Kore（しっかり）</option></select>
     </label>
     </div>
     <label class="eleven-only">
@@ -108,8 +108,8 @@
       </div>
     </fieldset>
     <label>
-      温度 <span id="temperature-value">0.70</span>（0.30–1.20、既定 0.70）
-      <input id="temperature" type="range" min="0.3" max="1.2" step="0.05" value="0.7">
+      温度 <span id="temperature-value">0.90</span>（0.30–1.20、既定 0.90）
+      <input id="temperature" type="range" min="0.3" max="1.2" step="0.05" value="0.9">
     </label>
     <fieldset class="choice-group">
       <legend>反応の早さ（既定は high）</legend>
