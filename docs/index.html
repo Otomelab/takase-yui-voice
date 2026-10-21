@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>由衣ちゃんと話す</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <img class="bg-photo" src="assets/bg_entrance.png" alt="プライベートサロンの玄関" width="712" height="1098">
+  <div class="scrim" aria-hidden="true"></div>
+
+  <header class="topbar">
+    <img class="seal" src="assets/expressions/yui/training_expression_01.png" alt="由衣ちゃん" width="301" height="464">
+    <div class="title-block">
+      <p class="eyebrow">店じまいの合図</p>
+      <h1>由衣ちゃんと話す</h1>
+      <p class="lede">高瀬さんの声に、由衣ちゃんが声で返します。</p>
+    </div>
+    <img id="speak-seal" class="seal" src="assets/expressions/yui/training_expression_05.png" alt="由衣ちゃん" width="301" height="464">
+    <div class="session-controls">
+      <p id="status" class="status">未接続</p>
+      <button id="connect-button" type="button" data-mode="connect">接続する</button>
+    </div>
+  </header>
+
+  <main class="stage">
+    <section class="portrait-column" aria-label="由衣ちゃんの立ち絵">
+      <figure id="sprite" class="portrait-card">
+        <img src="assets/yui_main.png" alt="由衣ちゃんの立ち絵">
+        <figcaption>表田 由衣</figcaption>
+      </figure>
+    </section>
+
+    <section class="chat-column" aria-label="会話">
+      <p id="error" class="error" role="alert" hidden></p>
+      <div id="transcript" class="transcript" aria-live="polite">
+        <p class="empty">接続すると、高瀬さんの言葉と由衣ちゃんの返事がここに残ります。</p>
+      </div>
+      <p class="hint">マイクの音声は 24kHz の PCM にして送ります。由衣ちゃんの声も同じ形式で届いたものを再生します。</p>
+    </section>
+
+    <aside class="deco-column" aria-label="サロンの装飾">
+      <figure class="deco-card">
+        <img src="assets/expressions/yui/training_expression_02.png" alt="トレーニングフロアにいる由衣さん" width="307" height="512">
+        <figcaption>由衣さん</figcaption>
+      </figure>
+      <figure class="deco-card floor-card">
+        <img src="assets/bg_training.png" alt="トレーニングフロア" width="700" height="1116">
+        <figcaption>フロア</figcaption>
+      </figure>
+    </aside>
+  </main>
+
+  <section id="settings" class="settings">
+    <h2>設定</h2>
+    <form id="settings-form">
+    <p class="warning">
+      API キーはこのブラウザの localStorage にだけ保存されます。サーバーには残りません。
+      ページを開き直しても、このブラウザではキーが残ります。「キーを削除」で消せます。
+      GitHub Pages では ayumisan.github.io のオリジンを他のプロジェクトサイトと共有するため、同じオリジンの別ページのスクリプトからも読める点に注意してください。
+      共有のパソコンでは使い終わりに削除してください。
+    </p>
+    <fieldset class="choice-group">
+      <legend>接続先</legend>
+      <div class="choices">
+        <label class="choice"><input type="radio" name="provider" value="elevenlabs" checked> ElevenLabs</label>
+        <label class="choice"><input type="radio" name="provider" value="gemini"> Gemini Live</label>
+      </div>
+    </fieldset>
+    <div class="gemini-only">
+    <label>
+      Gemini API キー（Google AI Studio で発行）
+      <input id="gemini-key" type="password" autocomplete="off" spellcheck="false" placeholder="AI Studio のキー">
+    </label>
+    <label>
+      Gemini モデル
+      <select id="gemini-model">
+        <option value="gemini-3.1-flash-live-preview">gemini-3.1-flash-live-preview（無料枠あり）</option>
+        <option value="gemini-3.8-live">gemini-3.8-live</option>
+      </select>
+    </label>
+    <label>
+      Gemini の声（既定 Zephyr）
+      <select id="gemini-voice"><option value="Zephyr" selected>Zephyr（明るい）</option><option value="Leda">Leda（若々しい）</option><option value="Aoede">Aoede（軽やか）</option><option value="Kore">Kore（しっかり）</option></select>
+    </label>
+    </div>
+    <label class="eleven-only">
+      ElevenLabs API キー
+      <input id="api-key" type="password" autocomplete="off" spellcheck="false" placeholder="xi- から始まるキー">
+    </label>
+    <label>
+      声の ID（空欄のまま接続すると config.js の既定を使います。いまの声は Yusuke）
+      <input id="voice" type="text" autocomplete="off" spellcheck="false">
+    </label>
+    <label>
+      トークン取得 URL（通常は空。ブラウザから発行できないときだけ）
+      <input id="token-url" type="url" autocomplete="off" placeholder="http://127.0.0.1:8787/token">
+    </label>
+    <fieldset class="choice-group">
+      <legend>モデル</legend>
+      <div class="choices">
+        <label class="choice"><input type="radio" name="model" value="eleven_realtime_v1_mini" checked> Mini</label>
+        <label class="choice"><input type="radio" name="model" value="eleven_realtime_v1_max"> Max</label>
+      </div>
+    </fieldset>
+    <label>
+      温度 <span id="temperature-value">0.70</span>（0.30–1.20、既定 0.70）
+      <input id="temperature" type="range" min="0.3" max="1.2" step="0.05" value="0.7">
+    </label>
+    <fieldset class="choice-group">
+      <legend>反応の早さ（既定は high）</legend>
+      <div class="choices">
+        <label class="choice"><input type="radio" name="eagerness" value="low"> low</label>
+        <label class="choice"><input type="radio" name="eagerness" value="medium"> medium</label>
+        <label class="choice"><input type="radio" name="eagerness" value="high" checked> high</label>
+      </div>
+    </fieldset>
+    <label class="choice interrupt-choice">
+      <input id="interrupt" type="checkbox" checked>
+      話し始めを割り込みにする
+    </label>
+    <p class="note">speed、stability、similarity_boost、style、voice_settings は送りません。session.speed は unknown_parameter です。ハキハキしたテンポは指示文で出します。文字起こしの言語は常に ja、区切りは semantic_vad です。</p>
+    <div class="settings-actions">
+      <button id="save-settings" type="submit">このブラウザに保存</button>
+      <button id="clear-key" type="button" class="danger">キーを削除</button>
+    </div>
+    </form>
+  </section>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
