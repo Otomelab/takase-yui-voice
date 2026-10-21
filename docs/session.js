@@ -7,7 +7,7 @@
 // Those are ignored, and session.speed is unknown_parameter.
 // Input audio is audio/pcm at 24000 Hz.
 
-import { TARGET_RATE } from "./audio-util.js";
+import { TARGET_RATE } from "./audio-util.js?v=20261021-1125";
 import {
   DEFAULT_EAGERNESS,
   DEFAULT_INTERRUPT,
@@ -15,8 +15,8 @@ import {
   DEFAULT_MODEL,
   DEFAULT_TEMPERATURE,
   DEFAULT_VOICE_ID,
-} from "./config.js";
-import { YUI_INSTRUCTIONS } from "./persona.js";
+} from "./config.js?v=20261021-1125";
+import { YUI_INSTRUCTIONS } from "./persona.js?v=20261021-1125";
 
 const MODELS = new Set(["eleven_realtime_v1_mini", "eleven_realtime_v1_max"]);
 const EAGERNESS = new Set(["low", "medium", "high"]);

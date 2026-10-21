@@ -4,8 +4,8 @@ import {
   DEFAULT_MODEL,
   DEFAULT_TEMPERATURE,
   DEFAULT_VOICE_ID,
-} from "./config.js";
-import { buildRealtimeSession } from "./session.js";
+} from "./config.js?v=20261021-1125";
+import { buildRealtimeSession } from "./session.js?v=20261021-1125";
 import {
   TARGET_RATE,
   base64ToBytes,
@@ -14,14 +14,14 @@ import {
   floatToPcm16,
   pcm16BytesToFloat32,
   resampleLinear,
-} from "./audio-util.js";
+} from "./audio-util.js?v=20261021-1125";
 import {
   GEMINI_DEFAULT_MODEL, GEMINI_DEFAULT_VOICE,
   GEMINI_INPUT_RATE,
   buildGeminiSetup,
   geminiAudioMessage,
   geminiUrl,
-} from "./gemini.js";
+} from "./gemini.js?v=20261021-1125";
 
 const STORAGE_KEY = "slot018.elevenlabsApiKey";
 const VOICE_KEY = "slot018.voice";
