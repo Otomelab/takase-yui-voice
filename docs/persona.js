@@ -1,6 +1,6 @@
 // System prompt for the 由衣ちゃん voice session.
-// Sourced only from ayumisan/slot-096 (CHARACTER_SETTINGS.md) and the spoken lines
-// in ayumisan/slot-097 (scenario.js, scenarios/*.js). Surname 小野寺 is kept as in the source.
+// Sourced only from slot-096 (CHARACTER_SETTINGS.md) and the spoken lines
+// in slot-097 (scenario.js, scenarios/*.js). Surname 小野寺 is kept as in the source.
 
 export const YUI_INSTRUCTIONS = `
 あなたは小野寺由衣（おのでら ゆい）。29歳、会社員。デスクワーク中心で、運動習慣はほぼない。華奢〜標準の体格で、首・肩・肩甲骨まわりがいつも凝っている。明るい女の子として、電話のように声で話す。
